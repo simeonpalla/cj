@@ -15,19 +15,24 @@ exports.handler = async (event, context) => {
                 'apikey': SUPABASE_KEY,
                 'Authorization': `Bearer ${SUPABASE_KEY}`,
                 'Content-Type': 'application/json',
-                'Prefer': 'return=minimal' // Tells Supabase not to send the whole row back
+                'Prefer': 'return=minimal' 
             },
             body: JSON.stringify({ name: body.name, message: body.message })
         });
 
-        if (!response.ok) throw new Error('Failed to insert into Supabase');
+        // If Supabase rejects it, grab the EXACT reason why
+        if (!response.ok) {
+            const errorDetails = await response.text();
+            console.error('Supabase Error Details:', errorDetails);
+            throw new Error(`Supabase rejected the insert: ${errorDetails}`);
+        }
 
         return {
             statusCode: 200,
             body: JSON.stringify({ success: true })
         };
     } catch (error) {
-        console.error(error);
-        return { statusCode: 500, body: JSON.stringify({ error: 'Failed to add wish' }) };
+        console.error('Function caught an error:', error.message);
+        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 };
