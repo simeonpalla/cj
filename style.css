@@ -180,52 +180,59 @@ h1, h2, h3, .couple-names {
     border-color: #8a3a3a;
 }
 
-/* Horizontal Scrolling Wishes List */
-.wishes-list {
+/* Auto-scrolling Carousel Wrapper */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
     margin-top: 3rem;
+    position: relative;
+    /* Optional: Creates a smooth fade-out effect on the left and right edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* The Moving Track */
+.wishes-list {
     display: flex;
-    overflow-x: auto;
     gap: 20px;
-    padding: 10px 5px 25px 5px; /* Extra bottom padding for the shadow */
-    
-    /* Smooth, app-like scrolling features */
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; 
-    
-    /* Hide the ugly scrollbar for a cleaner look */
-    scrollbar-width: none; /* Firefox */
+    width: max-content; /* Crucial: lets the track stretch infinitely */
+    padding: 10px 0 25px 0;
+    animation: auto-scroll 30s linear infinite; /* Adjust '30s' to change speed */
 }
 
-.wishes-list::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
+/* Pause the scrolling when a guest hovers or taps to read */
+.wishes-list:hover, .wishes-list:active {
+    animation-play-state: paused;
 }
 
-/* Individual Scrolling Cards */
+/* New Card Styling (Matching your reference image) */
 .wish-card {
-    flex: 0 0 auto; /* Prevents the cards from shrinking to fit the screen */
-    width: 280px; /* Fixed width so they look like uniform cards */
-    background: #fff;
-    padding: 25px;
+    width: 320px;
+    background: #eef4f8; /* Soft light blue/grey */
+    padding: 30px 20px;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-    border: 1px solid #f0eae1;
-    scroll-snap-align: center; /* Snaps the card to the center as you swipe */
-    text-align: left;
+    text-align: center; /* Center the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.wish-card h4 {
-    color: #8a3a3a;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #e8e0d5;
-    padding-bottom: 8px;
-}
-
-.wish-card p {
+.wish-card .wish-message {
     color: #555;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.6;
-    font-style: italic; /* Gives the message a nice handwritten/quote feel */
-    white-space: pre-wrap; /* Ensures any line breaks the user typed are kept */
+    margin-bottom: 15px;
+}
+
+.wish-card .wish-name {
+    color: #777;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* The seamless loop animation */
+@keyframes auto-scroll {
+    0% { transform: translateX(0); }
+    /* Shifts left by exactly half the total width plus half the gap */
+    100% { transform: translateX(calc(-50% - 10px)); }
 }

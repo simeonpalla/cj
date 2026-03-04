@@ -60,12 +60,16 @@ async function fetchWishes() {
         const data = await response.json();
 
         if (data && data.length > 0) {
-            display.innerHTML = data.map(wish => `
+            // Generate the cards matching the new centered aesthetic
+            const cardsHTML = data.map(wish => `
                 <div class="wish-card">
-                    <h4>${escapeHTML(wish.name)}</h4>
-                    <p>${escapeHTML(wish.message)}</p>
+                    <p class="wish-message">${escapeHTML(wish.message)}</p>
+                    <p class="wish-name">♡ ${escapeHTML(wish.name)}</p>
                 </div>
             `).join('');
+
+            // Double the cards so the infinite scrolling loops seamlessly
+            display.innerHTML = cardsHTML + cardsHTML;
         } else {
             display.innerHTML = '<p>Be the first to leave a wish!</p>';
         }
