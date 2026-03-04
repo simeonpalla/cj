@@ -40,7 +40,7 @@ document.getElementById('wishes-form').addEventListener('submit', async (e) => {
         if (response.ok) {
             nameInput.value = '';
             messageInput.value = '';
-            fetchWishes(); // Refresh to show the new wish
+            fetchWishes(); // Refresh the list with the new wish
         } else {
             throw new Error('Server error');
         }
@@ -63,11 +63,11 @@ async function fetchWishes() {
 
         if (data && data.length > 0) {
             let loopData = [...data];
+            // Ensure we have enough cards to fill the cinematic wide screen properly
             while (loopData.length < 8) {
                 loopData = [...loopData, ...data];
             }
 
-            // ADDED: onclick event and data-attributes to hold the full, unclipped text
             display.innerHTML = loopData.map(wish => `
                 <div class="wish-card" onclick="openModal(this)" data-message="${escapeHTML(wish.message)}" data-name="${escapeHTML(wish.name)}">
                     <p class="wish-message">${escapeHTML(wish.message)}</p>
@@ -94,6 +94,8 @@ function startCarousel() {
 
     autoSlideInterval = setInterval(() => {
         const firstCard = track.children[0];
+        
+        // Exact distance: 320px (Cinemascope card width) + 20px (gap)
         const slideDistance = 340;
 
         track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
@@ -108,29 +110,21 @@ function startCarousel() {
     }, 3000); 
 }
 
-// --- NEW: Modal Pop-up Logic ---
-
+// 5. Modal Pop-up Logic
 function openModal(cardElement) {
-    // Pause the carousel so it doesn't spin away while they are reading
-    clearInterval(autoSlideInterval);
-
+    clearInterval(autoSlideInterval); // Pause carousel
     const modal = document.getElementById('wish-modal');
-    
-    // Pull the full, unclipped text from the hidden data attributes
     document.getElementById('modal-message').innerHTML = cardElement.getAttribute('data-message');
     document.getElementById('modal-name').innerHTML = '♡ ' + cardElement.getAttribute('data-name');
-    
     modal.style.display = 'flex';
 }
 
 function closeModal() {
     document.getElementById('wish-modal').style.display = 'none';
-    
-    // Resume the carousel
-    startCarousel();
+    startCarousel(); // Resume carousel
 }
 
-// Close the pop-up if the user taps anywhere outside the white box
+// Close the pop-up if the user clicks the dark background
 window.onclick = function(event) {
     const modal = document.getElementById('wish-modal');
     if (event.target == modal) {
@@ -138,22 +132,12 @@ window.onclick = function(event) {
     }
 }
 
-// Simple HTML escaper
+// 6. Security Utility
 function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, tag => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
     }[tag] || tag));
 }
 
-// Load wishes immediately
-fetchWishes();
-
-// Simple HTML escaper
-function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-    }[tag] || tag));
-}
-
-// Load wishes immediately
+// Initialize
 fetchWishes();

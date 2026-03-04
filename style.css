@@ -1,157 +1,89 @@
 /* Base Styles & Resets */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: #fcfbf9; color: #333; overflow-x: hidden; }
+h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight: 400; }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fcfbf9;
-    color: #333;
-    overflow-x: hidden;
-}
-
-h1, h2, h3, .couple-names {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-}
-
-/* Welcome Screen (Forces user interaction for audio) */
+/* Welcome Screen */
 .welcome-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #f4eee8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    transition: opacity 1s ease-out;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #f4eee8; display: flex; justify-content: center; align-items: center;
+    z-index: 100; transition: opacity 1s ease-out;
 }
-
 .envelope {
-    text-align: center;
-    background: #fff;
-    padding: 3rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 1px solid #e8e0d5;
+    text-align: center; background: #fff; padding: 3rem 2rem;
+    border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e8e0d5;
 }
-
-.envelope h2 {
-    font-size: 1.5rem;
-    color: #6d5b4b;
-    margin-bottom: 0.5rem;
-}
-
-.envelope h1 {
-    font-size: 2.5rem;
-    color: #8a3a3a;
-    margin: 1rem 0 2rem;
-}
+.envelope h2 { font-size: 1.5rem; color: #6d5b4b; margin-bottom: 0.5rem; }
+.envelope h1 { font-size: 2.5rem; color: #8a3a3a; margin: 1rem 0 2rem; }
 
 /* Buttons */
 .btn-primary, .btn-secondary {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    border: none;
-    font-family: 'Poppins', sans-serif;
+    display: inline-block; padding: 12px 24px; border-radius: 30px;
+    text-decoration: none; font-size: 1rem; cursor: pointer;
+    transition: background 0.3s; border: none; font-family: 'Poppins', sans-serif;
+}
+.btn-primary { background-color: #8a3a3a; color: white; }
+.btn-primary:hover { background-color: #6b2d2d; }
+.btn-secondary { background-color: transparent; color: #8a3a3a; border: 1px solid #8a3a3a; }
+.btn-secondary:hover { background-color: #8a3a3a; color: white; }
+
+/* Layout for the Details Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Stacks them on mobile */
+    gap: 15px; /* Adds perfect space between the buttons */
+    margin-top: 25px;
+    align-items: center;
 }
 
-.btn-primary {
-    background-color: #8a3a3a;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #6b2d2d;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: #8a3a3a;
-    border: 1px solid #8a3a3a;
-    margin-top: 15px;
-}
-
-.btn-secondary:hover {
-    background-color: #8a3a3a;
-    color: white;
+/* Places them side-by-side on larger screens like iPads and Desktops */
+@media (min-width: 600px) {
+    .action-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
 }
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(252, 251, 249, 0.7), rgba(252, 251, 249, 0.9)), url('your-hero-image.jpg') center/cover;
-    padding: 20px;
+    height: 100vh; display: flex; justify-content: center; align-items: center;
+    text-align: center; padding: 20px;
+    background: linear-gradient(rgba(252, 251, 249, 0.5), rgba(252, 251, 249, 0.9)), url('your-hero-image.jpg') center/cover;
 }
+.sub-heading { letter-spacing: 3px; font-size: 0.9rem; color: #6d5b4b; margin-bottom: 1rem; }
+.couple-names { font-size: 4.5rem; color: #8a3a3a; line-height: 1.1; margin-bottom: 1.5rem; }
+.couple-names span { font-size: 2.5rem; font-style: italic; color: #a8947e; }
+.date { font-size: 1.2rem; letter-spacing: 1px; }
 
-.sub-heading {
-    letter-spacing: 3px;
-    font-size: 0.9rem;
-    color: #6d5b4b;
-    margin-bottom: 1rem;
+/* Formal Invitation Section */
+.formal-invite {
+    text-align: center; padding: 6rem 20px; max-width: 800px;
+    margin: 0 auto; position: relative; overflow: hidden;
 }
+.floral-top-left, .floral-bottom-right {
+    position: absolute; width: 180px; height: 180px;
+    background-size: contain; background-repeat: no-repeat;
+    opacity: 0.7; z-index: -1;
+}
+.floral-top-left { top: -10px; left: -10px; background-image: url('flower.png'); transform: rotate(0deg); }
+.floral-bottom-right { bottom: -10px; right: -10px; background-image: url('flower.png'); transform: rotate(180deg); }
 
-.couple-names {
-    font-size: 4.5rem;
-    color: #8a3a3a;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-}
-
-.couple-names span {
-    font-size: 2.5rem;
-    font-style: italic;
-    color: #a8947e;
-}
-
-.date {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
+.intro-text { color: #6d5b4b; font-size: 1rem; line-height: 1.8; margin-bottom: 3.5rem; font-family: 'Poppins', sans-serif; }
+.formal-name { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #8a3a3a; font-style: italic; margin-bottom: 0.5rem; line-height: 1.2; }
+.relation { color: #888; font-size: 0.95rem; margin-bottom: 0.2rem; font-style: italic; }
+.parents { color: #555; font-size: 1rem; margin-bottom: 2rem; font-weight: 400; }
+.with-text { font-family: 'Playfair Display', serif; font-size: 2rem; color: #a8947e; font-style: italic; margin: 2rem 0; }
 
 /* Common Section Styles */
-.details-section, .wishes-section {
-    padding: 5rem 20px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
+.details-section, .wishes-section { padding: 4rem 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+.section-title { font-size: 2.5rem; color: #8a3a3a; margin-bottom: 2rem; }
 
-.section-title {
-    font-size: 2.5rem;
-    color: #8a3a3a;
-    margin-bottom: 2rem;
-}
-
-/* Cards */
+/* Details Card */
 .card {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 1px solid #f0eae1;
+    background: white; padding: 3rem 2rem; border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f0eae1;
 }
-
-.card h3 {
-    font-size: 1.5rem;
-    color: #6d5b4b;
-    margin: 1.5rem 0 0.5rem;
-}
-
+.card h3 { font-size: 1.5rem; color: #6d5b4b; margin: 1.5rem 0 0.5rem; }
 .card h3:first-child { margin-top: 0; }
 .card p { color: #555; margin-bottom: 0.5rem; line-height: 1.6; }
 .card .time { font-weight: 500; color: #8a3a3a; }
@@ -159,133 +91,54 @@ h1, h2, h3, .couple-names {
 
 /* Wishes Form */
 .wishes-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    background: white; padding: 2rem; border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 2rem;
 }
-
 #wishes-form input, #wishes-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
+    width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd;
+    border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem;
 }
+#wishes-form input:focus, #wishes-form textarea:focus { outline: none; border-color: #8a3a3a; }
 
-#wishes-form input:focus, #wishes-form textarea:focus {
-    outline: none;
-    border-color: #8a3a3a;
-}
-
-/* Auto-scrolling Carousel Wrapper */
+/* Cinematic Carousel */
 .carousel-wrapper {
-    width: 100%;
-    overflow: hidden;
-    margin-top: 3rem;
-    position: relative;
-    /* This softly fades the side cards so they look elegant, not abruptly cut off */
+    width: 100%; overflow: hidden; position: relative;
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
-
-/* The Moving Track */
 .wishes-list {
-    display: flex;
-    gap: 20px; 
-    width: max-content;
-    
-    /* NEW MATH for a 320px wide card: 
-       50% - (320px card + 20px gap + 160px half card) = 500px */
-    margin-left: calc(50% - 500px);
-    
-    padding: 10px 0 25px 0;
-    will-change: transform; 
+    display: flex; gap: 20px; width: max-content;
+    margin-left: calc(50% - 500px); /* Centers the active card */
+    padding: 10px 0 25px 0; will-change: transform;
 }
-
-/* Individual Cards (Cinemascope Ratio) */
 .wish-card {
-    width: 320px; 
-    aspect-ratio: 2.35 / 1; /* This forces the perfect Cinemascope widescreen ratio! */
-    background: #fdfbf8; 
-    padding: 15px 20px; /* Reduced padding so text has room in the shorter card */
-    border-radius: 12px;
-    text-align: center; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    border: 1px solid #f0eae1;
+    width: 320px; aspect-ratio: 2.35 / 1; /* Cinemascope Ratio */
+    background: #fdfbf8; padding: 15px 20px; border-radius: 12px;
+    text-align: center; display: flex; flex-direction: column; justify-content: center;
+    flex-shrink: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #f0eae1;
     cursor: pointer;
 }
-
 .wish-card .wish-message {
-    color: #555;
-    font-size: 1.05rem; /* Slightly smaller to look elegant in widescreen */
-    line-height: 1.4;
-    margin-bottom: 8px;
-    
-    /* Because the card is shorter now, we clamp it at 3 lines instead of 5 */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #555; font-size: 1.05rem; line-height: 1.4; margin-bottom: 8px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden; text-overflow: ellipsis;
 }
+.wish-card .wish-name { color: #777; font-size: 0.95rem; font-weight: 500; }
 
-.wish-card .wish-name {
-    color: #777;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-/* Make cards look clickable */
-.wish-card {
-    cursor: pointer;
-}
-
-/* Pop-up Modal Styles */
+/* Pop-up Modal */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Darkens the background */
-    backdrop-filter: blur(4px); /* Adds an elegant blur effect */
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px);
     display: flex; justify-content: center; align-items: center;
     z-index: 1000; padding: 20px;
 }
-
 .modal-content {
-    background: #fdfbf8;
-    padding: 40px 30px;
-    border-radius: 12px;
-    max-width: 400px; width: 100%;
-    position: relative;
-    text-align: center;
+    background: #fdfbf8; padding: 40px 30px; border-radius: 12px;
+    max-width: 400px; width: 100%; position: relative; text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+.modal-content .wish-message { color: #555; font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px; white-space: pre-wrap; }
+.modal-content .wish-name { color: #777; font-size: 1.1rem; font-weight: 500; }
+.close-modal { position: absolute; top: 10px; right: 15px; font-size: 2rem; cursor: pointer; color: #8a3a3a; line-height: 1; }
 
-.modal-content .wish-message {
-    color: #555;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    white-space: pre-wrap; /* Keeps any paragraphs/line breaks intact */
-}
-
-.modal-content .wish-name {
-    color: #777;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.close-modal {
-    position: absolute; 
-    top: 10px; right: 15px;
-    font-size: 2rem; 
-    cursor: pointer; 
-    color: #8a3a3a;
-    line-height: 1;
-}
+footer { text-align: center; padding: 3rem 20px; background: #8a3a3a; color: white; font-family: 'Playfair Display', serif; font-size: 1.5rem; }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chanti & Jabili | Wedding Invitation</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -28,6 +28,31 @@
             </div>
         </section>
 
+        <section class="formal-invite">
+            <div class="floral-top-left"></div>
+            <div class="floral-bottom-right"></div>
+
+            <p class="intro-text">
+                Wedding Invitation<br><br>
+                Solicit your gracious presence with family and friends,<br>
+                on the auspicious occasion of the marriage of
+            </p>
+
+            <div class="person">
+                <h2 class="formal-name">Guna Sai Venkata Ramana Murthy (Chanti)</h2>
+                <p class="relation">S/o</p>
+                <p class="parents">Late Rongala Venkata Krishna Swamy & Late Smt. Parvathi</p>
+            </div>
+
+            <p class="with-text">With</p>
+
+            <div class="person">
+                <h2 class="formal-name">Jabili</h2>
+                <p class="relation">D/o</p>
+                <p class="parents">Sri Sankurubhuktha Ramesh & Smt. Rajya Lakshmi</p>
+            </div>
+        </section>
+
         <section class="details-section">
             <h2 class="section-title">The Details</h2>
             <div class="card">
@@ -41,9 +66,15 @@
                 <h3>Venue</h3>
                 <p>SLS Function Hall (Natraj Theatre)<br>Opp. Sapthagiri Theatre, Jute Mill Road<br>Thagarapuvalasa</p>
                 
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chanti+%26+Jabili+Wedding&dates=20260321T133000Z/20260321T180000Z&details=Sumuhurtham+at+9:33+PM.+Dinner+at+7:00+PM.&location=SLS+Function+Hall,+Thagarapuvalasa" target="_blank" class="btn-secondary">
-                    Add to Google Calendar
-                </a>
+                <div class="action-buttons">
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chanti+%26+Jabili+Wedding&dates=20260321T133000Z/20260321T180000Z&details=Sumuhurtham+at+9:33+PM.+Dinner+at+7:00+PM.&location=SLS+Function+Hall,+Thagarapuvalasa" target="_blank" class="btn-secondary">
+                        Add to Calendar
+                    </a>
+                    
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=SLS+Function+Hall,+Thagarapuvalasa" target="_blank" class="btn-primary">
+                        Get Directions
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -52,14 +83,14 @@
             <div class="wishes-container">
                 <form id="wishes-form">
                     <input type="text" id="guest-name" placeholder="Your Name" required>
-                    <textarea id="guest-message" rows="4" placeholder="Write your wishes for the couple..." required></textarea>
+                    <textarea id="guest-message" rows="3" placeholder="Write your wishes for the couple..." required></textarea>
                     <button type="submit" class="btn-primary" id="submit-btn">Send Wish</button>
                 </form>
+            </div>
 
-                <div class="carousel-wrapper">
-                    <div id="wishes-display" class="wishes-list">
-                        <p id="loading-wishes">Loading wishes...</p>
-                    </div>
+            <div class="carousel-wrapper">
+                <div id="wishes-display" class="wishes-list">
+                    <p id="loading-wishes">Loading wishes...</p>
                 </div>
             </div>
         </section>
@@ -69,11 +100,6 @@
         </footer>
     </main>
 
-    <audio id="bg-music" loop>
-        <source src="background-music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <div id="wish-modal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -81,6 +107,10 @@
             <p id="modal-name" class="wish-name"></p>
         </div>
     </div>
+
+    <audio id="bg-music" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+    </audio>
 
     <script src="app.js"></script>
 </body>
