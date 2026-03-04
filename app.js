@@ -1,3 +1,5 @@
+let autoSlideInterval;
+
 // 1. Audio and Screen Transition Logic
 function openInvitation() {
     const welcomeScreen = document.getElementById('welcome-screen');
@@ -51,7 +53,7 @@ document.getElementById('wishes-form').addEventListener('submit', async (e) => {
     submitBtn.disabled = false;
 });
 
-// 3. Fetch and Display Wishes via BFF (Infinite Marquee)
+// 3. Fetch and Display Wishes 
 async function fetchWishes() {
     const display = document.getElementById('wishes-display');
     
@@ -60,32 +62,58 @@ async function fetchWishes() {
         const data = await response.json();
 
         if (data && data.length > 0) {
-            // If there are only a few wishes, duplicate the array so the screen is always full
+            // Ensure we have enough cards to create a seamless loop on wide screens
             let loopData = [...data];
-            if (data.length < 5) {
-                loopData = [...data, ...data, ...data, ...data];
+            while (loopData.length < 6) {
+                loopData = [...loopData, ...data];
             }
 
-            // Create the HTML for the cards
-            const cardsHTML = loopData.map(wish => `
+            display.innerHTML = loopData.map(wish => `
                 <div class="wish-card">
                     <p class="wish-message">${escapeHTML(wish.message)}</p>
                     <p class="wish-name">♡ ${escapeHTML(wish.name)}</p>
                 </div>
             `).join('');
 
-            // Double the final HTML so the CSS animation can seamlessly reset at 50%
-            display.innerHTML = cardsHTML + cardsHTML;
-
+            startCarousel();
         } else {
             display.innerHTML = '<p>Be the first to leave a wish!</p>';
-            // Stop the animation if there are no cards
-            display.style.animation = 'none'; 
         }
     } catch (error) {
         console.error('Error fetching wishes:', error);
         display.innerHTML = '<p>Error loading wishes.</p>';
     }
+}
+
+// 4. TRUE Infinite Step Carousel Logic
+function startCarousel() {
+    const track = document.getElementById('wishes-display');
+    if (!track) return;
+
+    clearInterval(autoSlideInterval);
+
+    autoSlideInterval = setInterval(() => {
+        // Grab the very first card in the list
+        const firstCard = track.children[0];
+        
+        // Calculate exact distance to slide (Card width + the 20px gap)
+        const slideDistance = firstCard.offsetWidth + 20;
+
+        // Step 1: Smoothly slide the entire track to the left
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateX(-${slideDistance}px)`;
+
+        // Step 2: Wait exactly 0.5s for the slide animation to finish
+        setTimeout(() => {
+            // Turn off the animation momentarily
+            track.style.transition = 'none';
+            // Snap the track back to its starting position
+            track.style.transform = 'translateX(0)';
+            // Take the first card and move it to the very end of the line
+            track.appendChild(firstCard);
+        }, 500);
+
+    }, 3000); // Wait 3 seconds, then do it all again
 }
 
 // Simple HTML escaper

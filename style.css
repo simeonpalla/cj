@@ -183,10 +183,9 @@ h1, h2, h3, .couple-names {
 /* Auto-scrolling Carousel Wrapper */
 .carousel-wrapper {
     width: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Hides the cards outside the view */
     margin-top: 3rem;
     position: relative;
-    /* This adds the beautiful faded edges so cards dissolve smoothly */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
@@ -195,14 +194,9 @@ h1, h2, h3, .couple-names {
 .wishes-list {
     display: flex;
     gap: 20px;
-    width: max-content; /* Crucial: lets the track stretch infinitely */
+    width: max-content; 
     padding: 10px 0 25px 0;
-    animation: infinite-scroll 50s linear infinite; /* 25s is the speed. Lower = faster */
-}
-
-/* Pause the scrolling when a guest hovers over it to read */
-.wishes-list:hover, .wishes-list:active {
-    animation-play-state: paused;
+    /* No CSS animation here anymore! JS will handle the sliding */
 }
 
 /* Individual Cards */
@@ -215,7 +209,7 @@ h1, h2, h3, .couple-names {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-shrink: 0; /* Prevents cards from squishing together */
+    flex-shrink: 0;
 }
 
 .wish-card .wish-message {
@@ -229,11 +223,4 @@ h1, h2, h3, .couple-names {
     color: #777;
     font-size: 1rem;
     font-weight: 500;
-}
-
-/* The Seamless Loop Animation */
-@keyframes infinite-scroll {
-    0% { transform: translateX(0); }
-    /* Shifts left by exactly half the total width plus half the gap (10px) */
-    100% { transform: translateX(calc(-50% - 10px)); }
 }
