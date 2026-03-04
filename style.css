@@ -157,6 +157,29 @@ h1, h2, h3, .couple-names {
 .card .time { font-weight: 500; color: #8a3a3a; }
 .card hr { border: 0; height: 1px; background: #e8e0d5; margin: 1.5rem auto; width: 50%; }
 
+/* Wishes Form */
+.wishes-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+#wishes-form input, #wishes-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+#wishes-form input:focus, #wishes-form textarea:focus {
+    outline: none;
+    border-color: #8a3a3a;
+}
+
 /* Horizontal Scrolling Wishes List */
 .wishes-list {
     margin-top: 3rem;
