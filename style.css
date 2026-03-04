@@ -79,25 +79,25 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
 
 /* --- Ganesha Top Section --- */
 .ganesha-container {
-    margin-bottom: 2.5rem; /* Adds perfect breathing room before "Wedding Invitation" */
+    margin-top: 1.5rem; /* Pushes the content slightly further down from the top edge */
+    margin-bottom: 2rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .ganesha-icon {
-    width: 90px; /* Keeps the icon elegant and not overpowering */
+    width: 60px; /* Shrunk down from 90px for a more delicate, premium look */
     height: auto;
-    margin-bottom: 0.8rem;
-    opacity: 0.85; /* Softens it slightly to blend with the background */
+    margin-bottom: 0.5rem;
 }
 
 .ganesha-text {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    color: #4a4a4a; /* A soft dark grey that matches your reference image */
+    font-size: 0.95rem; /* Scaled down slightly */
+    color: #555; 
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 .sub-heading { 
@@ -118,9 +118,9 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
 .person { margin: 0 auto; }
 
 .couple-names { 
-    font-size: 3rem; 
-    color: #8a3a3a; /* Reverted to the elegant maroon */
-    line-height: 1.2; 
+    font-size: 2.2rem; /* Reduced from 3rem so the long name sits much more elegantly */
+    color: #8a3a3a; 
+    line-height: 1.25; 
     margin-bottom: 0.5rem; 
 }
 
@@ -175,9 +175,11 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
 
 /* 1st Flower: Top Left (Hero Section) */
 .flower-1 {
-    top: -20px;
+    top: -20px; /* Pushes it slightly further off-screen */
     left: -20px;
-    width: 250px; height: 250px;
+    width: 200px; 
+    height: 250px;
+    opacity: 0.25; /* Softens the flower drastically so the Ganesha text is easy to read */
     background-image: url('flower1.png'); 
 }
 
