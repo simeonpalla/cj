@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanti & Jabili | Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="envelope">
+            <h2>You're Invited</h2>
+            <p>To the wedding of</p>
+            <h1>Chanti & Jabili</h1>
+            <button id="open-btn" class="btn-primary" onclick="openInvitation()">Open Invitation</button>
+        </div>
+    </div>
+
+    <main id="main-content" style="display: none;">
+        
+        <section class="hero">
+            <div class="hero-text">
+                <p class="sub-heading">TOGETHER WITH THEIR FAMILIES</p>
+                <h1 class="couple-names">Chanti<br><span>&</span><br>Jabili</h1>
+                <p class="date">Saturday, 21st March 2026</p>
+            </div>
+        </section>
+
+        <section class="details-section">
+            <h2 class="section-title">The Details</h2>
+            <div class="card">
+                <h3>Sumuhurtham</h3>
+                <p>Saturday, 21st March 2026</p>
+                <p class="time">9:33 PM</p>
+                <hr>
+                <h3>Dinner</h3>
+                <p>From 7:00 PM onwards</p>
+                <hr>
+                <h3>Venue</h3>
+                <p>SLS Function Hall (Natraj Theatre)<br>Opp. Sapthagiri Theatre, Jute Mill Road<br>Thagarapuvalasa</p>
+                
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Chanti+%26+Jabili+Wedding&dates=20260321T133000Z/20260321T180000Z&details=Sumuhurtham+at+9:33+PM.+Dinner+at+7:00+PM.&location=SLS+Function+Hall,+Thagarapuvalasa" target="_blank" class="btn-secondary">
+                    Add to Google Calendar
+                </a>
+            </div>
+        </section>
+
+        <section class="wishes-section">
+            <h2 class="section-title">Leave a Wish</h2>
+            <div class="wishes-container">
+                <form id="wishes-form">
+                    <input type="text" id="guest-name" placeholder="Your Name" required>
+                    <textarea id="guest-message" rows="4" placeholder="Write your wishes for the couple..." required></textarea>
+                    <button type="submit" class="btn-primary" id="submit-btn">Send Wish</button>
+                </form>
+
+                <div id="wishes-display" class="wishes-list">
+                    <p id="loading-wishes">Loading wishes...</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>We can't wait to celebrate with you!</p>
+        </footer>
+    </main>
+
+    <audio id="bg-music" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
