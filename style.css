@@ -194,44 +194,43 @@ h1, h2, h3, .couple-names {
 /* The Moving Track */
 .wishes-list {
     display: flex;
-    gap: 20px; /* Space between cards */
+    gap: 20px; 
     width: max-content;
     
-    /* THE CENTERING MAGIC TRICK: 
-       This perfectly centers the 2nd card. 
-       Formula: 50% - (Card Width + Gap + Half Card Width) 
-       50% - (300 + 20 + 150) = 470px */
-    margin-left: calc(50% - 470px);
+    /* NEW MATH for a 320px wide card: 
+       50% - (320px card + 20px gap + 160px half card) = 500px */
+    margin-left: calc(50% - 500px);
     
     padding: 10px 0 25px 0;
-    will-change: transform; /* Makes the slide animation buttery smooth */
+    will-change: transform; 
 }
 
-/* Individual Cards */
+/* Individual Cards (Cinemascope Ratio) */
 .wish-card {
-    width: 300px; 
-    height: 240px; /* 1. FORCE every card to be the exact same height */
+    width: 320px; 
+    aspect-ratio: 2.35 / 1; /* This forces the perfect Cinemascope widescreen ratio! */
     background: #fdfbf8; 
-    padding: 30px 20px;
+    padding: 15px 20px; /* Reduced padding so text has room in the shorter card */
     border-radius: 12px;
     text-align: center; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* This keeps short messages perfectly centered */
+    justify-content: center;
     flex-shrink: 0;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     border: 1px solid #f0eae1;
+    cursor: pointer;
 }
 
 .wish-card .wish-message {
     color: #555;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 1.05rem; /* Slightly smaller to look elegant in widescreen */
+    line-height: 1.4;
+    margin-bottom: 8px;
     
-    /* 2. THE CLAMP: Limits text to exactly 5 lines and adds "..." if it's longer */
+    /* Because the card is shorter now, we clamp it at 3 lines instead of 5 */
     display: -webkit-box;
-    -webkit-line-clamp: 5; 
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -239,7 +238,7 @@ h1, h2, h3, .couple-names {
 
 .wish-card .wish-name {
     color: #777;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
 }
 

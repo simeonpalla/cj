@@ -94,7 +94,7 @@ function startCarousel() {
 
     autoSlideInterval = setInterval(() => {
         const firstCard = track.children[0];
-        const slideDistance = 320;
+        const slideDistance = 340;
 
         track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
         track.style.transform = `translateX(-${slideDistance}px)`;
