@@ -186,31 +186,28 @@ h1, h2, h3, .couple-names {
     overflow: hidden;
     margin-top: 3rem;
     position: relative;
-    /* Optional: Creates a smooth fade-out effect on the left and right edges */
+    /* This adds the beautiful faded edges so cards dissolve smoothly */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* The Track */
+/* The Moving Track */
 .wishes-list {
     display: flex;
     gap: 20px;
-    overflow-x: auto; /* Re-enable scrolling */
-    scroll-snap-type: x mandatory; /* Re-enable snapping */
-    scroll-behavior: smooth; /* Makes the JS slide look buttery smooth */
-    padding: 10px 20px 25px 20px;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
+    width: max-content; /* Crucial: lets the track stretch infinitely */
+    padding: 10px 0 25px 0;
+    animation: infinite-scroll 25s linear infinite; /* 25s is the speed. Lower = faster */
 }
 
-.wishes-list::-webkit-scrollbar { 
-    display: none; /* Hide scrollbar Chrome/Safari */
+/* Pause the scrolling when a guest hovers over it to read */
+.wishes-list:hover, .wishes-list:active {
+    animation-play-state: paused;
 }
 
-/* Individual Card */
+/* Individual Cards */
 .wish-card {
-    flex: 0 0 auto; 
-    width: 300px; /* Fixed width */
-    scroll-snap-align: center; /* Ensures it stops perfectly in the middle */
+    width: 320px;
     background: #eef4f8; 
     padding: 30px 20px;
     border-radius: 12px;
@@ -218,6 +215,7 @@ h1, h2, h3, .couple-names {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-shrink: 0; /* Prevents cards from squishing together */
 }
 
 .wish-card .wish-message {
@@ -231,4 +229,11 @@ h1, h2, h3, .couple-names {
     color: #777;
     font-size: 1rem;
     font-weight: 500;
+}
+
+/* The Seamless Loop Animation */
+@keyframes infinite-scroll {
+    0% { transform: translateX(0); }
+    /* Shifts left by exactly half the total width plus half the gap (10px) */
+    100% { transform: translateX(calc(-50% - 10px)); }
 }
