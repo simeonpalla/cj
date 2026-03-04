@@ -191,27 +191,30 @@ h1, h2, h3, .couple-names {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* The Moving Track */
+/* The Track */
 .wishes-list {
     display: flex;
     gap: 20px;
-    width: max-content; /* Crucial: lets the track stretch infinitely */
-    padding: 10px 0 25px 0;
-    animation: auto-scroll 30s linear infinite; /* Adjust '30s' to change speed */
+    overflow-x: auto; /* Re-enable scrolling */
+    scroll-snap-type: x mandatory; /* Re-enable snapping */
+    scroll-behavior: smooth; /* Makes the JS slide look buttery smooth */
+    padding: 10px 20px 25px 20px;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
 }
 
-/* Pause the scrolling when a guest hovers or taps to read */
-.wishes-list:hover, .wishes-list:active {
-    animation-play-state: paused;
+.wishes-list::-webkit-scrollbar { 
+    display: none; /* Hide scrollbar Chrome/Safari */
 }
 
-/* New Card Styling (Matching your reference image) */
+/* Individual Card */
 .wish-card {
-    width: 320px;
-    background: #eef4f8; /* Soft light blue/grey */
+    flex: 0 0 auto; 
+    width: 300px; /* Fixed width */
+    scroll-snap-align: center; /* Ensures it stops perfectly in the middle */
+    background: #eef4f8; 
     padding: 30px 20px;
     border-radius: 12px;
-    text-align: center; /* Center the text */
+    text-align: center; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -228,11 +231,4 @@ h1, h2, h3, .couple-names {
     color: #777;
     font-size: 1rem;
     font-weight: 500;
-}
-
-/* The seamless loop animation */
-@keyframes auto-scroll {
-    0% { transform: translateX(0); }
-    /* Shifts left by exactly half the total width plus half the gap */
-    100% { transform: translateX(calc(-50% - 10px)); }
 }
