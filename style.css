@@ -44,27 +44,148 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
     }
 }
 
-/* Hero Section */
+/* --- Hero Section & First Page Layout --- */
 .hero {
-    height: 100vh; display: flex; justify-content: center; align-items: center;
-    text-align: center; padding: 20px;
+    min-height: 100vh; /* Changed to min-height so it doesn't cut off on small phones */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    padding: 60px 20px;
     background: linear-gradient(rgba(252, 251, 249, 0.5), rgba(252, 251, 249, 0.9)), url('your-hero-image.jpg') center/cover;
+    position: relative;
+    overflow: hidden;
 }
-.sub-heading { letter-spacing: 3px; font-size: 0.9rem; color: #6d5b4b; margin-bottom: 1rem; }
-.couple-names { font-size: 4.5rem; color: #8a3a3a; line-height: 1.1; margin-bottom: 1.5rem; }
-.couple-names span { font-size: 2.5rem; font-style: italic; color: #a8947e; }
-.date { font-size: 1.2rem; letter-spacing: 1px; }
+
+/* Floral Corners */
+.floral-top-left, .floral-bottom-right {
+    position: absolute; 
+    width: 250px; /* Made slightly larger for better aesthetic */
+    height: 250px;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    opacity: 0.8; 
+    z-index: 0;
+}
+/* IMPORTANT: Make sure your file is a transparent PNG, not a JPG with a black background! */
+.floral-top-left { top: -30px; left: -30px; background-image: url('flower.png'); transform: rotate(0deg); }
+.floral-bottom-right { bottom: -30px; right: -30px; background-image: url('flower.png'); transform: rotate(180deg); }
+
+.hero-text {
+    position: relative;
+    z-index: 1; /* Keeps text above the flowers */
+    max-width: 600px;
+}
+
+.sub-heading { 
+    letter-spacing: 3px; 
+    font-size: 0.9rem; 
+    color: #6d5b4b; 
+    margin-bottom: 2rem; 
+    text-transform: uppercase;
+}
+
+.intro-text { 
+    color: #555; 
+    font-size: 1rem; 
+    line-height: 1.8; 
+    margin-bottom: 3rem; 
+}
+
+.person { margin: 0 auto; }
+
+.couple-names { 
+    font-size: 3rem; 
+    color: #8a3a3a; /* Reverted to the elegant maroon */
+    line-height: 1.2; 
+    margin-bottom: 0.5rem; 
+}
+
+.relation { 
+    color: #666; 
+    font-size: 1rem; 
+    margin-bottom: 0.2rem; 
+    font-style: italic; 
+}
+
+.parents { 
+    color: #444; 
+    font-size: 1rem; 
+    margin-bottom: 0; 
+    font-weight: 400; 
+}
+
+.with-text { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2rem; 
+    color: #a8947e; /* Reverted to the soft gold/tan */
+    font-style: italic; 
+    margin: 1.5rem 0; 
+}
+
+.date { 
+    font-size: 1.2rem; 
+    letter-spacing: 1px; 
+    margin-top: 3rem;
+    color: #6d5b4b;
+}
 
 /* Formal Invitation Section */
 .formal-invite {
     text-align: center; padding: 6rem 20px; max-width: 800px;
     margin: 0 auto; position: relative; overflow: hidden;
 }
-.floral-top-left, .floral-bottom-right {
-    position: absolute; width: 180px; height: 180px;
-    background-size: contain; background-repeat: no-repeat;
-    opacity: 0.7; z-index: -1;
+
+/* --- Global Aesthetic Flowers --- */
+#main-content {
+    position: relative; /* This allows the flowers to stick to the whole page */
 }
+
+.bg-flower {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Keeps them soft and subtle so text is easy to read */
+    z-index: -1; /* Puts them securely behind everything */
+    pointer-events: none; /* CRUCIAL: prevents flowers from blocking button clicks! */
+}
+
+/* 1st Flower: Top Left (Hero Section) */
+.flower-1 {
+    top: -20px;
+    left: -20px;
+    width: 250px; height: 250px;
+    background-image: url('flower1.png'); 
+}
+
+/* 2nd Flower: Middle Right (Details Section) */
+.flower-2 {
+    top: 35%; /* About a third of the way down the page */
+    right: -30px;
+    width: 200px; height: 200px;
+    background-image: url('flower2.png'); 
+    /* This mirrors the flower horizontally so it faces into the page, but stays right-side up! */
+    transform: scaleX(-1); 
+}
+
+/* 3rd Flower: Bottom Left (Wishes Section) */
+.flower-3 {
+    top: 65%;
+    left: -20px;
+    width: 220px; height: 220px;
+    background-image: url('flower2.png'); 
+}
+
+/* 4th Flower: Lower Right (Safely above the maroon footer) */
+.flower-4 {
+    bottom: 250px; /* Pushes it up so it doesn't touch the footer */
+    right: -30px;
+    width: 200px; height: 200px;
+    background-image: url('flower1.png'); 
+    /* Flips it horizontally and adds a slight natural tilt */
+    transform: scaleX(-1) rotate(-15deg); 
+}
+
 .floral-top-left { top: -10px; left: -10px; background-image: url('flower.png'); transform: rotate(0deg); }
 .floral-bottom-right { bottom: -10px; right: -10px; background-image: url('flower.png'); transform: rotate(180deg); }
 
