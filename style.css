@@ -197,7 +197,7 @@ h1, h2, h3, .couple-names {
     gap: 20px;
     width: max-content; /* Crucial: lets the track stretch infinitely */
     padding: 10px 0 25px 0;
-    animation: infinite-scroll 25s linear infinite; /* 25s is the speed. Lower = faster */
+    animation: infinite-scroll 50s linear infinite; /* 25s is the speed. Lower = faster */
 }
 
 /* Pause the scrolling when a guest hovers over it to read */
