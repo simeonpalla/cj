@@ -62,14 +62,14 @@ async function fetchWishes() {
         const data = await response.json();
 
         if (data && data.length > 0) {
-            // Ensure we have enough cards to create a seamless loop on wide screens
             let loopData = [...data];
-            while (loopData.length < 6) {
+            while (loopData.length < 8) {
                 loopData = [...loopData, ...data];
             }
 
+            // ADDED: onclick event and data-attributes to hold the full, unclipped text
             display.innerHTML = loopData.map(wish => `
-                <div class="wish-card">
+                <div class="wish-card" onclick="openModal(this)" data-message="${escapeHTML(wish.message)}" data-name="${escapeHTML(wish.name)}">
                     <p class="wish-message">${escapeHTML(wish.message)}</p>
                     <p class="wish-name">♡ ${escapeHTML(wish.name)}</p>
                 </div>
@@ -93,28 +93,60 @@ function startCarousel() {
     clearInterval(autoSlideInterval);
 
     autoSlideInterval = setInterval(() => {
-        // Grab the very first card in the list
         const firstCard = track.children[0];
-        
-        // Calculate exact distance to slide (Card width + the 20px gap)
-        const slideDistance = firstCard.offsetWidth + 20;
+        const slideDistance = 320;
 
-        // Step 1: Smoothly slide the entire track to the left
-        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
         track.style.transform = `translateX(-${slideDistance}px)`;
 
-        // Step 2: Wait exactly 0.5s for the slide animation to finish
         setTimeout(() => {
-            // Turn off the animation momentarily
             track.style.transition = 'none';
-            // Snap the track back to its starting position
             track.style.transform = 'translateX(0)';
-            // Take the first card and move it to the very end of the line
             track.appendChild(firstCard);
-        }, 500);
+        }, 600); 
 
-    }, 3000); // Wait 3 seconds, then do it all again
+    }, 3000); 
 }
+
+// --- NEW: Modal Pop-up Logic ---
+
+function openModal(cardElement) {
+    // Pause the carousel so it doesn't spin away while they are reading
+    clearInterval(autoSlideInterval);
+
+    const modal = document.getElementById('wish-modal');
+    
+    // Pull the full, unclipped text from the hidden data attributes
+    document.getElementById('modal-message').innerHTML = cardElement.getAttribute('data-message');
+    document.getElementById('modal-name').innerHTML = '♡ ' + cardElement.getAttribute('data-name');
+    
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('wish-modal').style.display = 'none';
+    
+    // Resume the carousel
+    startCarousel();
+}
+
+// Close the pop-up if the user taps anywhere outside the white box
+window.onclick = function(event) {
+    const modal = document.getElementById('wish-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// Simple HTML escaper
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag] || tag));
+}
+
+// Load wishes immediately
+fetchWishes();
 
 // Simple HTML escaper
 function escapeHTML(str) {
