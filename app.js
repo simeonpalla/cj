@@ -93,7 +93,7 @@ function startCarousel() {
     clearInterval(autoSlideInterval);
 
     // Set the timer to slide every 3000 milliseconds (3 seconds)
-    autoSlideInterval = setInterval(slideNext, 7000); // Increased to 7 seconds for better readability
+    autoSlideInterval = setInterval(slideNext, 4000); // Increased to 4 seconds for better readability
 
     function slideNext() {
         const card = list.querySelector('.wish-card');
