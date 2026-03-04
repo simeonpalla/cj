@@ -77,6 +77,29 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
     max-width: 600px;
 }
 
+/* --- Ganesha Top Section --- */
+.ganesha-container {
+    margin-bottom: 2.5rem; /* Adds perfect breathing room before "Wedding Invitation" */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ganesha-icon {
+    width: 90px; /* Keeps the icon elegant and not overpowering */
+    height: auto;
+    margin-bottom: 0.8rem;
+    opacity: 0.85; /* Softens it slightly to blend with the background */
+}
+
+.ganesha-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #4a4a4a; /* A soft dark grey that matches your reference image */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
 .sub-heading { 
     letter-spacing: 3px; 
     font-size: 0.9rem; 
