@@ -87,7 +87,7 @@ h1, h2, h3, .couple-names { font-family: 'Playfair Display', serif; font-weight:
 }
 
 .ganesha-icon {
-    width: 60px; /* Shrunk down from 90px for a more delicate, premium look */
+    width: 90px; /* Shrunk down from 90px for a more delicate, premium look */
     height: auto;
     margin-bottom: 0.5rem;
 }
