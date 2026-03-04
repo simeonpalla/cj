@@ -157,60 +157,52 @@ h1, h2, h3, .couple-names {
 .card .time { font-weight: 500; color: #8a3a3a; }
 .card hr { border: 0; height: 1px; background: #e8e0d5; margin: 1.5rem auto; width: 50%; }
 
-/* Wishes Form */
-.wishes-container {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-#wishes-form input, #wishes-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-}
-
-#wishes-form input:focus, #wishes-form textarea:focus {
-    outline: none;
-    border-color: #8a3a3a;
-}
-
+/* Horizontal Scrolling Wishes List */
 .wishes-list {
     margin-top: 3rem;
-    text-align: left;
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 10px;
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 5px 25px 5px; /* Extra bottom padding for the shadow */
+    
+    /* Smooth, app-like scrolling features */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; 
+    
+    /* Hide the ugly scrollbar for a cleaner look */
+    scrollbar-width: none; /* Firefox */
 }
 
+.wishes-list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Individual Scrolling Cards */
 .wish-card {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    flex: 0 0 auto; /* Prevents the cards from shrinking to fit the screen */
+    width: 280px; /* Fixed width so they look like uniform cards */
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0eae1;
+    scroll-snap-align: center; /* Snaps the card to the center as you swipe */
+    text-align: left;
 }
 
 .wish-card h4 {
     color: #8a3a3a;
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e8e0d5;
+    padding-bottom: 8px;
 }
 
 .wish-card p {
     color: #555;
     font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-footer {
-    text-align: center;
-    padding: 3rem 20px;
-    background: #8a3a3a;
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    line-height: 1.6;
+    font-style: italic; /* Gives the message a nice handwritten/quote feel */
+    white-space: pre-wrap; /* Ensures any line breaks the user typed are kept */
 }
